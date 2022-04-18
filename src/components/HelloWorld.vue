@@ -6,30 +6,29 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-const PropsType1 = {
-  msg: String,
-  age: Number,
-  nameMSS: {
-    type: String,
-    required: true,
-  },
-};
+// const PropsType1 = {
+//   msg: String,
+//   age: Number,
+//   nameMSS: {
+//     type: String,
+//     required: true,
+//   },
+// };
 
 const PropsType2 = {
-  msg: String,
-  age: Number,
-  nameMSS: {
-    type: String,
+  message: String,
+  age: {
+    type: Number,
     required: true,
   },
 } as const;
 
 export default defineComponent({
   name: "HelloWorld",
-  props: PropsType1,
-  // props: PropsType2,
+  // props: PropsType1,
+  props: PropsType2,
   mounted() {
-    this.nameMSS;
+    // this.age;
     /*
      当props为 PropsType1 时，this.nameMSS打印如下，
      (property) nameMSS?: string | undefined
@@ -44,6 +43,10 @@ export default defineComponent({
      
     */
   },
+  // setup(props) {
+  //   const { age } = props;
+  //   return {};
+  // },
 });
 </script>
 
