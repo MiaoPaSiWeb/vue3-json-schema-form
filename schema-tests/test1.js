@@ -1,5 +1,6 @@
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
+const localize = require("ajv-i18n");
 const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
 
 // Error: unknown format “email” ignored in schema at path "#/properties/name"
@@ -79,4 +80,9 @@ const data = {
 };
 
 const valid = validate(data);
-if (!valid) console.log(validate.errors);
+if (!valid) {
+  // zh for China
+  localize.zh(validate.errors);
+  // string with all errors and data paths
+  console.log(ajv.errorsText(validate.errors, { separator: "\n" }));
+}
