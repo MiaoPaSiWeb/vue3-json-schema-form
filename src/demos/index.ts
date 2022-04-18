@@ -1,4 +1,5 @@
 import simple from "./simple";
 import simpleString from "./simple-string";
+import demo from "./demo";
 
-export default [simple, simpleString];
+export default [demo, simple, simpleString];
