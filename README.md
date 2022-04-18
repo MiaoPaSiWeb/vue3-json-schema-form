@@ -109,3 +109,7 @@ export interface UISchema extends VueJsonSchemaConfig {
 }
 
 ```
+
+# .vue or .tsx
+
+使用.vue 文件开发的组件，import 出来后，ts 并不支持对它的校验，导致组件有必传参数时，仍能编译通过，这其实是不合理的；建议用 tsx 开发,因为会有编译校验

@@ -1,41 +1,8 @@
 export default {
   name: "Simple-string",
   schema: {
-    description: "A simple form example.",
     type: "string",
-    properties: {
-      firstName: {
-        type: "string",
-        default: "Chuck",
-      },
-      lastName: {
-        type: "string",
-      },
-      telephone: {
-        type: "string",
-        minLength: 10,
-      },
-    },
   },
-  uiSchema: {
-    title: "A registration form",
-    properties: {
-      firstName: {
-        title: "First name",
-      },
-      lastName: {
-        title: "Last name",
-      },
-      telephone: {
-        title: "Telephone",
-      },
-    },
-  },
-  default: {
-    firstName: "Chuck",
-    lastName: "Norris",
-    age: 75,
-    bio: "Roundhouse kicking asses since 1940",
-    password: "noneed",
-  },
+  uiSchema: {},
+  default: "Mike Li",
 };
