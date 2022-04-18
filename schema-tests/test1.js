@@ -17,14 +17,55 @@ const schema = {
       type: "number",
       format: "qy", //****自定义***
     },
+    name: {
+      type: "string",
+      test3: false,
+    },
   },
 };
 
-//自定义
+//自定义 format
 ajv.addFormat("qy", {
   type: "number", //输入类型必须是number
   validate: (x) => {
     return x > 5 ? true : false;
+  },
+});
+
+// 关键字
+// 关键字是3种类型
+// 1、 "validate" function
+// 2、 "compile" function
+// 3、 "macro" function
+
+// validate类型
+ajv.addKeyword("test1", {
+  validate(schema, data) {
+    console.log("普通：", schema, data);
+    if (schema === true) return true;
+    else return data.length === 6;
+  },
+});
+
+// compile类型
+ajv.addKeyword("test2", {
+  compile(sch, parentSchema) {
+    console.log("compile：", sch, parentSchema);
+    return (x) => {
+      if (x.length === 6) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+  },
+});
+// macro型
+ajv.addKeyword("test3", {
+  macro() {
+    return {
+      minLength: 10,
+    };
   },
 });
 
@@ -33,7 +74,8 @@ const validate = ajv.compile(schema);
 const data = {
   foo: 1,
   bar: "abc@xxx.com",
-  age: 0,
+  age: 10,
+  name: "dfsd",
 };
 
 const valid = validate(data);
