@@ -117,6 +117,7 @@ export default defineComponent({
     const classesRef = useStyles();
 
     const handleChange = (v: any) => {
+      console.log(v + "------");
       demo.data = v;
       demo.dataCode = toJson(v);
     };

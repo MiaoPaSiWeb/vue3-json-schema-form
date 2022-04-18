@@ -63,10 +63,10 @@ export default defineComponent({
     let __prevent_trigger_change_event = false; // eslint-disable-line
 
     onMounted(() => {
+      //创建代码编辑器
       const editor = (editorRef.value = Monaco.editor.create(
         containerRef.value,
         {
-          // eslint-disabled-line
           value: props.code,
           language: "json",
           formatOnPaste: true,
@@ -76,8 +76,9 @@ export default defineComponent({
           },
         },
       ));
+      // 代码内容发生变化回调
       _subscription = editor.onDidChangeModelContent((event) => {
-        console.log("-------->", __prevent_trigger_change_event); // eslint-disable-line
+        console.log("-------->", __prevent_trigger_change_event);
         if (!__prevent_trigger_change_event) {
           // eslint-disable-line
           props.onChange(editor.getValue(), event);
@@ -91,25 +92,29 @@ export default defineComponent({
       }
     });
 
-    // watch(() => props.code, (v) => {
-    //   const editor = editorRef.value
-    //   const model = editor.getModel()
-    //   if( v !== model.getValue()){
-    //     editor.pushUndoStop();
-    //     __prevent_trigger_change_event = true; // eslint-disable-line
-    //     model.pushEditOperations(
-    //       [],
-    //       [
-    //         {
-    //           range: model.getFullModelRange(),
-    //           text: v
-    //         }
-    //       ]
-    //     )
-    //     editor.pushUndoStop()
-    //     __prevent_trigger_change_event = false; // eslint-disable-line
-    //   }
-    // })
+    // 监听器（props.code值发生变化后）
+    watch(
+      () => props.code,
+      (v) => {
+        const editor = editorRef.value;
+        const model = editor.getModel();
+        if (v !== model.getValue()) {
+          editor.pushUndoStop();
+          __prevent_trigger_change_event = true; // eslint-disable-line
+          model.pushEditOperations(
+            [],
+            [
+              {
+                range: model.getFullModelRange(),
+                text: v,
+              },
+            ],
+          );
+          editor.pushUndoStop();
+          __prevent_trigger_change_event = false; // eslint-disable-line
+        }
+      },
+    );
 
     const classesRef = useStyles();
 

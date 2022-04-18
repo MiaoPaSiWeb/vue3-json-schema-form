@@ -1,3 +1,5 @@
+import { PropType } from "vue";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export enum SchemaTypes {
   "NUMBER" = "number",
@@ -30,3 +32,17 @@ export interface Schema {
   additionalProperties?: any;
   additionalItems?: Schema;
 }
+
+export const FiledPropsDefine = {
+  schema: {
+    type: Object as PropType<Schema>,
+    required: true,
+  },
+  value: {
+    required: true,
+  },
+  onChange: {
+    type: Function as PropType<(v: any) => void>,
+    required: true,
+  },
+} as const;
