@@ -41,53 +41,47 @@ export interface VueJsonSchemaConfig {
 
 type SchemaRef = { $ref: string };
 
-export type Schema = (JSONSchema6 | JSONSchema7) & {
+export interface Schema {
   enumNames?: (string | number)[];
   vjsf?: VueJsonSchemaConfig;
-};
+  type?: SchemaTypes | string;
+  const?: any;
+  format?: string;
+
+  title?: string;
+  default?: any;
+
+  properties?: {
+    [key: string]: Schema | { $ref: string };
+  };
+  items?: Schema | Schema[] | SchemaRef;
+  uniqueItems?: any;
+  dependencies?: {
+    [key: string]: string[] | Schema | SchemaRef;
+  };
+  oneOf?: Schema[];
+  anyOf?: Schema[];
+  allOf?: Schema[];
+  required?: string[];
+  enum?: any[];
+  enumKeyValue?: any[];
+  additionalProperties?: any;
+  additionalItems?: Schema;
+
+  minLength?: number;
+  maxLength?: number;
+  minimun?: number;
+  maximum?: number;
+  multipleOf?: number;
+  exclusiveMaximum?: number;
+  exclusiveMinimum?: number;
+}
 
 export interface UISchema extends VueJsonSchemaConfig {
   properties?: {
     [property: string]: UISchema;
   };
 }
-// type Schema = any
-// export interface Schema {
-//   type?: SchemaTypes | string;
-//   const?: any;
-//   format?: string;
-
-//   title?: string;
-//   default?: any;
-
-//   properties?: {
-//     [key: string]: Schema | { $ref: string };
-//   };
-//   items?: Schema | Schema[] | SchemaRef;
-//   uniqueItems?: any;
-//   dependencies?: {
-//     [key: string]: string[] | Schema | SchemaRef;
-//   };
-//   oneOf?: Schema[];
-//   anyOf?: Schema[];
-//   allOf?: Schema[];
-//   vjsf?: VueJsonSchemaConfig;
-//   required?: string[];
-//   enum?: any[];
-//   enumNames?: any[];
-//   enumKeyValue?: any[];
-//   additionalProperties?: any;
-//   additionalItems?: Schema;
-
-//   minLength?: number;
-//   maxLength?: number;
-//   minimun?: number;
-//   maximum?: number;
-//   multipleOf?: number;
-//   exclusiveMaximum?: number;
-//   exclusiveMinimum?: number;
-// }
-
 // fix error TS2456: Type alias 'ErrorSchema' circularly references itself
 interface ErrorSchemaObject {
   [level: string]: ErrorSchema;

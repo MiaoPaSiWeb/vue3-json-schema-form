@@ -1,23 +1,18 @@
-import { defineComponent, PropType } from "vue";
+import { defineComponent, ref, Ref, computed, isReactive, isRef } from "vue";
 
-import { Schema, SchemaTypes, CommonFieldPropsDefine } from "../types";
+import { CommonFieldPropsDefine } from "../types";
+// import { isObject } from "../utils";
+// import { useVJSFContext } from "../Context";
+// import { useComponent, ThemeLayoutsNames } from "../theme";
+// import { getUiSchema } from "./common";
 
 export default defineComponent({
   name: "ObjectField",
   props: CommonFieldPropsDefine,
-  setup(props, { slots, emit, attrs }) {
-    const handleChange = (e: any) => {
-      const value = e.target.value;
-      const number = Number(value);
-      // 逻辑校验
-      if (Number.isNaN(number)) {
-        props.onChange(undefined);
-      } else {
-        props.onChange(number);
-      }
-    };
+  setup(props) {
+    // const { schema } = props;
     return () => {
-      return <input type="number" value={props.value} onInput={handleChange} />;
+      return <div>This is ObjectField</div>;
     };
   },
 });

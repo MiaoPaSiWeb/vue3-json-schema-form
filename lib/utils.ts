@@ -46,7 +46,7 @@ export function resolveSchema(schema: Schema, rootSchema = {}, formData = {}) {
     return schema;
   }
 }
-
+// 处理schema
 export function retrieveSchema(
   schema: any,
   rootSchema = {},
