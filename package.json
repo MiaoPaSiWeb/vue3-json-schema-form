@@ -10,11 +10,16 @@
   },
   "dependencies": {
     "ajv": "^8.11.0",
+    "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.1",
     "ajv-i18n": "^4.2.0",
     "core-js": "^3.8.3",
+    "json-schema-merge-allof": "^0.8.1",
+    "jsonpointer": "^5.0.0",
     "jss": "^10.9.0",
     "jss-preset-default": "^10.9.0",
+    "lodash.topath": "^4.5.2",
+    "lodash.union": "^4.6.0",
     "vue": "^3.2.13",
     "vue-jss": "^0.0.4"
   },

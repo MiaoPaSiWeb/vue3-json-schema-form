@@ -1,34 +1,17 @@
 import { defineComponent, PropType } from "vue";
 
-import { Schema, SchemaTypes } from "../types";
+import { FiledPropsDefine } from "../types";
 
 export default defineComponent({
   name: "StringField",
-  props: {
-    schema: {
-      type: Object as PropType<Schema>,
-      required: true,
-    },
-    value: {
-      required: true,
-    },
-    onChange: {
-      type: Function as PropType<(v: any) => void>,
-      required: true,
-    },
-  },
+  props: FiledPropsDefine,
   setup(props, { slots, emit, attrs }) {
+    const handleChange = (e: any) => {
+      console.log(e.target.value);
+      props.onChange(e.target.value);
+    };
     return () => {
-      const schema = props.schema;
-      const type = schema?.type;
-      switch (type) {
-        case SchemaTypes.STRING: {
-          return <input type="text" />;
-        }
-        default:
-          break;
-      }
-      return <div>This is a form</div>;
+      return <input type="text" value={props.value} onInput={handleChange} />;
     };
   },
 });
