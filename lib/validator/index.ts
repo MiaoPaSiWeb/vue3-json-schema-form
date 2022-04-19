@@ -205,14 +205,17 @@ export function validateFormData(
   //   formerCustomFormats = customFormats;
   // }
 
-  let validationError = null;
+  let validationError: any = null;
   try {
     ajv.validate(schema, formData);
   } catch (err) {
     validationError = err;
   }
 
-  i18n[locale](ajv.errors);
+  // TODO: 这里语言应该是动态的
+  // i18n[locale](ajv.errors);
+  i18n.zh(ajv.errors);
+
   let errors = transformAjvErrors(ajv.errors);
   // Clear errors to prevent persistent errors, see #1104
 

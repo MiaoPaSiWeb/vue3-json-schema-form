@@ -1,10 +1,10 @@
 import { defineComponent, PropType } from "vue";
 
-import { FiledPropsDefine } from "../types";
+import { CommonFieldPropsDefine } from "../types";
 
 export default defineComponent({
   name: "StringField",
-  props: FiledPropsDefine,
+  props: CommonFieldPropsDefine,
   setup(props, { slots, emit, attrs }) {
     const handleChange = (e: any) => {
       console.log(e.target.value);

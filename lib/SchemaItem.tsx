@@ -1,13 +1,13 @@
 import { defineComponent, PropType } from "vue";
 
-import { Schema, SchemaTypes, FiledPropsDefine } from "./types";
+import { Schema, SchemaTypes, CommonFieldPropsDefine } from "./types";
 
 import StringField from "./fields/StringField";
 import NumberField from "./fields/NumberField";
 
 export default defineComponent({
   name: "SchemaItem",
-  props: FiledPropsDefine,
+  props: CommonFieldPropsDefine,
   setup(props, { slots, emit, attrs }) {
     return () => {
       const { schema } = props;

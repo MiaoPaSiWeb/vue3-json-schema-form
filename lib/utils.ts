@@ -1,4 +1,4 @@
-import { Schema, SchemaTypes, VueJsonSchemaConfig } from "./types";
+import { Schema, VueJsonSchemaConfig } from "./types";
 
 import jsonpointer from "jsonpointer";
 import union from "lodash.union";

@@ -4,11 +4,11 @@
 
 <script>
 import { defineComponent } from "vue";
-import { FiledPropsDefine } from "../types";
+import { CommonFieldPropsDefine } from "../types";
 
 export default defineComponent({
   name: "NumberField",
-  props: FiledPropsDefine,
+  props: CommonFieldPropsDefine,
   setup(props) {
     const handleChange = (e) => {
       const value = e.target.value;

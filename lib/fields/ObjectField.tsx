@@ -3,7 +3,7 @@ import { defineComponent, PropType } from "vue";
 import { Schema, SchemaTypes, CommonFieldPropsDefine } from "../types";
 
 export default defineComponent({
-  name: "NumberField",
+  name: "ObjectField",
   props: CommonFieldPropsDefine,
   setup(props, { slots, emit, attrs }) {
     const handleChange = (e: any) => {
